@@ -57,7 +57,7 @@ buildNetworkUnmappedSourceCodeIndex <-
         if (file.exists(cdmSourceFile)) {
           if (file.exists(completenessFile)) {
             cdmSourceData <- read.csv(cdmSourceFile)
-            completenessData <- read.csv(completenessFile)
+            completenessData <- read.csv(completenessFile, colClasses=c("character","character","character","integer"))
             withSourceValue <- dplyr::filter(completenessData, nchar(stringr::str_trim(completenessData$SOURCE_VALUE))>0)
             if (nrow(withSourceValue >0)) {
               withSourceValue$DATA_SOURCE <- cdmSourceData$CDM_SOURCE_ABBREVIATION
